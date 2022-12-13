@@ -14,13 +14,17 @@ class LottoController {
         val input = inputView.purchaseAccount()
         if(input == -1)
             return
+        val lottoCount = input / 1000
+
         // 로또 생성 TODO (어디에 저장할 것인가?)
-        for(i in 0 until input/1000) {
-            // Lotto().makeLotto()
+        val lottos = mutableListOf<Lotto>()
+        for(i in 0 until lottoCount) {
+            val lotto = LottoMachine().makeLotto()
+            lottos.add(lotto)
         }
 
         println("당첨 번호를 입력해 주세요.")
-        val winningLotto = Console.readLine()
+        val winningLotto = inputView.winningLotto()
         // 입력값 체크
 
         // convert string to list

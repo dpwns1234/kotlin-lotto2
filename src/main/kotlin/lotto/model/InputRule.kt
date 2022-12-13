@@ -8,4 +8,8 @@ class InputRule {
         if(account % 1000 != 0) throw IllegalArgumentException("[ERROR] 1000원 단위로 입력해주세요")
         return account
     }
+
+    fun checkWinningLotto(input: String): Int {
+
+    }
 }

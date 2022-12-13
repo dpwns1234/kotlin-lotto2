@@ -15,4 +15,11 @@ class InputView {
             }
         return account
     }
+
+    fun winningLotto() {
+        while(true) {
+            val input = readLine()
+            kotlin.runCatching { inputRule.checkWinningLotto(input) }
+        }
+    }
 }
