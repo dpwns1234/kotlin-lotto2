@@ -1,6 +1,7 @@
 package lotto.view
 
 import camp.nextstep.edu.missionutils.Console.readLine
+import lotto.Lotto
 import lotto.model.InputRule
 
 class InputView {
@@ -16,10 +17,13 @@ class InputView {
         return account
     }
 
-    fun winningLotto() {
-        while(true) {
+    fun winningLotto(): Lotto? {
+        while (true) {
             val input = readLine()
-            kotlin.runCatching { inputRule.checkWinningLotto(input) }
+            var winningLotto: Lotto? = null
+            kotlin.runCatching { winningLotto = inputRule.checkWinningLotto(input) }
+                .onSuccess { return winningLotto }
+                .onFailure { e -> println(e.message) }
         }
     }
 }

@@ -7,6 +7,8 @@ import lotto.view.InputView
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 
 class LottoTest: NsTest() {
@@ -39,16 +41,27 @@ class LottoTest: NsTest() {
     // TODO 위의 것 사용해야 될까?
     @Test
     fun `입력된 당첨번호가 6자리가 아닐 경우 에러 메세지 발생`() {
+        assertSimpleTest {
+            runException("1000", "1,2,3,4,5")
+            Assertions.assertThat(output()).contains("[ERROR]")
+        }
     }
-    
+//    @ValueSource(strings = ["1000", "123456"])
+//    @ParameterizedTest
     @Test
     fun `입력된 당첨번호 또는 보너스 번호가 중복될 경우 에러메시지 발생`() {
-        TODO()
+        assertSimpleTest {
+            runException("1000", "1,2,3,4,5,5")
+            Assertions.assertThat(output()).contains("[ERROR]")
+        }
     }
 
     @Test
     fun `입력된 당첨번호가 ','로 구분되어지지 않은 경우 에러메세지 발생`() {
-        TODO()
+        assertSimpleTest {
+            runException("1000", "123456")
+            Assertions.assertThat(output()).contains("[ERROR]")
+        }
     }
 
     override fun runMain() {
