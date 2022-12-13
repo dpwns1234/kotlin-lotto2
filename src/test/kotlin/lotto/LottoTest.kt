@@ -38,7 +38,7 @@ class LottoTest: NsTest() {
         }
     }
     
-    // TODO 위의 것 사용해야 될까?
+    // TODO 왜 그냥 run("1000", "123")으로 하면 ERROR를 찾을 수 없다고 할까? 무슨 차이일까?
     @Test
     fun `입력된 당첨번호가 6자리가 아닐 경우 에러 메세지 발생`() {
         assertSimpleTest {

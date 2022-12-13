@@ -23,13 +23,14 @@ class LottoController {
             lottos.add(lotto)
         }
 
+        // TODO 이것도 어디에 저장할 것인가?
         println("당첨 번호를 입력해 주세요.")
         val winningLotto = inputView.winningLotto()
 
         // convert string to list
 
         println("보너스 번호를 입력해 주세요.")
-        val bonusNumber = Console.readLine()
+        val bonusNumber = inputView.bonusNumber(winningLotto)
         // 중복 체크 등 입력값 체크
 
         // 당첨 결과 계산

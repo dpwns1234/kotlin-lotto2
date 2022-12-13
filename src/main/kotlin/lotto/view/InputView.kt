@@ -17,12 +17,21 @@ class InputView {
         return account
     }
 
-    fun winningLotto(): Lotto? {
+    fun winningLotto(): Lotto {
         while (true) {
             val input = readLine()
-            var winningLotto: Lotto? = null
-            kotlin.runCatching { winningLotto = inputRule.checkWinningLotto(input) }
-                .onSuccess { return winningLotto }
+            var lottoNumber = listOf<Int>()
+            kotlin.runCatching { lottoNumber = inputRule.checkWinningLotto(input) }
+                .onSuccess { return Lotto(lottoNumber) }
+                .onFailure { e -> println(e.message) }
+        }
+    }
+
+    fun bonusNumber(winningLotto: Lotto): Int {
+        while(true) {
+            val input = readLine()
+            kotlin.runCatching { inputRule.checkBonusNumber(input, winningLotto) }
+                .onSuccess { return input.toInt() }
                 .onFailure { e -> println(e.message) }
         }
     }
