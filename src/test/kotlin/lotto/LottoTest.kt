@@ -1,5 +1,6 @@
 package lotto
 
+import camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest
 import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
 import lotto.model.InputRule
@@ -11,7 +12,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 
-class LottoTest: NsTest() {
+class LottoTest : NsTest() {
     @Test
     fun `로또 번호의 개수가 6개가 넘어가면 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> {
@@ -37,7 +38,7 @@ class LottoTest: NsTest() {
             Assertions.assertThat(output()).contains("[ERROR]")
         }
     }
-    
+
     // TODO 왜 그냥 run("1000", "123")으로 하면 ERROR를 찾을 수 없다고 할까? 무슨 차이일까?
     @Test
     fun `입력된 당첨번호가 6자리가 아닐 경우 에러 메세지 발생`() {
@@ -46,7 +47,8 @@ class LottoTest: NsTest() {
             Assertions.assertThat(output()).contains("[ERROR]")
         }
     }
-//    @ValueSource(strings = ["1000", "123456"])
+
+    //    @ValueSource(strings = ["1000", "123456"])
 //    @ParameterizedTest
     @Test
     fun `입력된 당첨번호 또는 보너스 번호가 중복될 경우 에러메시지 발생`() {
@@ -62,6 +64,17 @@ class LottoTest: NsTest() {
             runException("1000", "123456")
             Assertions.assertThat(output()).contains("[ERROR]")
         }
+    }
+
+    @Test
+    fun `보너스 번호가 당첨번호와 중복됐을 경우`() {
+        assertRandomUniqueNumbersInRangeTest(
+            {
+                runException("8000", "1,2,3,4,5,6", "6")
+                Assertions.assertThat(output()).contains("[ERROR]")
+
+            }, listOf(1, 2, 3, 4, 5, 6)
+        )
     }
 
     override fun runMain() {

@@ -32,6 +32,6 @@ class InputRule {
     fun checkBonusNumber(input: String, winningLotto: Lotto) {
         val bonusNumber = input.toIntOrNull() ?: throw IllegalArgumentException("[ERROR] 숫자 입력해주세요.")
         if((bonusNumber in 1..45).not()) throw IllegalArgumentException("[ERROR] 1-45범위 안에 숫자를 입력해주세요.")
-        if(winningLotto.contains(bonusNumber).not()) throw IllegalArgumentException("[ERROR] 당첨번호와 중복되지 않은 보너스 번호를 입력해주세요.")
+        if(winningLotto.contains(bonusNumber)) throw IllegalArgumentException("[ERROR] 당첨번호와 중복되지 않은 보너스 번호를 입력해주세요.")
     }
 }
