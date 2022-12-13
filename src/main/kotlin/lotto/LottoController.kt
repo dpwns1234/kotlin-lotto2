@@ -11,12 +11,12 @@ class LottoController {
 
     fun runGame() {
         println("구입금액을 입력해 주세요.")
-        val input = Console.readLine()
-        // 입력값 체크
-
+        val input = inputView.purchaseAccount()
+        if(input == -1)
+            return
         // 로또 생성 TODO (어디에 저장할 것인가?)
         for(i in 0 until input/1000) {
-            Lotto().makeLotto()
+            // Lotto().makeLotto()
         }
 
         println("당첨 번호를 입력해 주세요.")
