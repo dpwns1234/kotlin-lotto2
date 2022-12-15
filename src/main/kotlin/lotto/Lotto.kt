@@ -21,4 +21,14 @@ class Lotto(private val numbers: List<Int>) {
         }
         return count
     }
+
+    fun formattingNumbers(): String {
+        var formatting = ""
+        for (number in numbers) {
+            formatting = formatting.plus(number).plus(", ")
+        }
+
+        return formatting.substring(0, formatting.length - 2)
+    }
+
 }

@@ -3,16 +3,17 @@ package lotto.view
 import camp.nextstep.edu.missionutils.Console.readLine
 import lotto.Lotto
 import lotto.model.InputRule
+import lotto.utils.Constants.INPUT_ERROR
 
 class InputView {
     private val inputRule = InputRule()
-    fun purchaseAccount(): Int {
+    fun purchaseAccount(): Int? {
         val input = readLine()
         var account = 0
         kotlin.runCatching { account = inputRule.checkPurchaseAccount(input) }
             .onFailure { e ->
                 println(e.message)
-                return -1
+                return null
             }
         return account
     }
